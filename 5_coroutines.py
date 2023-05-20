@@ -4,7 +4,7 @@ class BlaBlasExceprion(Exception):
     pass
 
 
-def coroutine(func):
+def init_gen(func):
     def inner(*args, **kwargs):
         g = func(*args, **kwargs)
         g.send(None)
@@ -18,7 +18,7 @@ def subgen():
     print(message)
 
 
-@coroutine
+@init_gen
 def average():
     count = 0
     summ = 0
