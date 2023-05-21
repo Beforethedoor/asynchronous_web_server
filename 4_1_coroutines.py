@@ -1,8 +1,6 @@
 import time
 from collections import deque
 
-queue = deque()
-
 
 def counter():
     count = 0
@@ -30,6 +28,7 @@ def main():
 
 
 if __name__ == "__main__":
+    queue = deque()
     queue.append(counter())
     queue.append(printer())
     main()

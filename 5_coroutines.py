@@ -1,24 +1,4 @@
 
-
-class BlaBlasExceprion(Exception):
-    pass
-
-
-def init_gen(func):
-    def inner(*args, **kwargs):
-        g = func(*args, **kwargs)
-        g.send(None)
-        return g
-    return inner
-
-
-def subgen():
-    x = "Ready to accept message"
-    message = yield x
-    print(message)
-
-
-@init_gen
 def average():
     count = 0
     summ = 0
@@ -30,9 +10,6 @@ def average():
         except StopIteration:
             print("Done")
             break
-        except BlaBlasExceprion:
-            print('BlaBlasExceprion')
-            break
         else:
             count += 1
             summ += x
@@ -42,6 +19,7 @@ def average():
 
 
 g = average()
+print(g.send(None))
 print(g.send(10))
 
 try:

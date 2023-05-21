@@ -1,13 +1,4 @@
 
-
-def init_gen(func):
-    def inner(*args, **kwargs):
-        g = func(*args, **kwargs)
-        g.send(None)
-        return g
-    return inner
-
-
 def subgen():
     while True:
         try:
@@ -20,7 +11,6 @@ def subgen():
     return "return from subgen()"
 
 
-@init_gen
 def delegator(g):
     result = yield from g
     print(result)
@@ -28,5 +18,6 @@ def delegator(g):
 
 sg = subgen()
 dg = delegator(sg)
+sg.send(None)
 sg.send("OK")
 sg.throw(StopIteration)
