@@ -1,10 +1,13 @@
 import asyncio
+import time
 
 
 async def print_nums():
-    num = 1
+    num = 0
     while True:
-        print(num)
+        if num % 3 != 0:
+            real_time_line = round(time.time() - cur_time, 2)
+            print(f"TIME: {real_time_line} - {num} sec.")
         num += 1
         await asyncio.sleep(1)
 
@@ -13,7 +16,8 @@ async def print_modul():
     count = 0
     while True:
         if count % 3 == 0:
-            print(f"{count} moduled by 3!")
+            real_time_line = round(time.time() - cur_time, 2)
+            print(f"TIME: {real_time_line} - {count} PRINT!")
         count += 1
         await asyncio.sleep(1)
 
@@ -25,4 +29,5 @@ async def main():
 
 
 if __name__ == "__main__":
+    cur_time = time.time()
     asyncio.run(main())
